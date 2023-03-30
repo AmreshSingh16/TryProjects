@@ -1,0 +1,16 @@
+const mongodb = require('./db')
+const express = require('express');
+const { json } = require('express');
+const app = express();
+mongodb();
+
+app.get("/" , function(req,res){
+    res.send("Hello World!")
+})
+app.use(express.json())
+app.use('/api' , require("./Routes/CreateUser"))
+
+app.listen(5000, function(){
+    console.log("Listening on port 5000")
+})
+
