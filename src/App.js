@@ -13,7 +13,7 @@ function App() {
       <div>
         <Header />
       </div>
-      <div>
+      <div className="container"style={{position : "relative"}}>
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/about' element={<About />} />
