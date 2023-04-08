@@ -1,6 +1,8 @@
 import React, {useState} from "react";
+const {useNavigate} = require('react-router-dom');
 
 function Login() {
+    const navigate = useNavigate();
 
     const [credentials , setcredentials] = useState({ email:"" , password:""})
 
@@ -19,10 +21,15 @@ function Login() {
         })
 
         const res = await response.json()
-        console.log(res)
+        
 
         if(!res.success){
             alert("Incorrect Username or Password")
+            console.log(res)
+        }
+        if(res.success){
+            navigate("/about")
+            console.log(res)
         }
     }
 

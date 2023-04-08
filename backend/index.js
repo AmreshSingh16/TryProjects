@@ -19,6 +19,7 @@ app.use((req,res,next)=>{
 app.use(express.json())
 app.use('/api' , require("./Routes/CreateUser"))
 app.use('/api' , require("./Routes/LoginUser"))
+app.use('/api' , require("./Routes/DisplayData"))
 
 app.listen(5000, function(){
     console.log("Listening on port 5000")
