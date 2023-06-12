@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+
 const mongoURI = "mongodb+srv://amresh164singh:BsniUunyA8Cqjn3E@cluster0.kjhtix0.mongodb.net/TryProjectsDB?retryWrites=true&w=majority"
 const mongoDB = async()=>{
     await mongoose.connect(mongoURI  , {useNewUrlParser : true} ).then(function(err,result){
-        const fetched_data =  mongoose.connection.db.collection("projects_data");
+        const fetched_data =  mongoose.connection.db.collection("projects_datas");
         fetched_data.find({}).toArray(function(err,data){
             if (err) console.log("error")
             else {
@@ -14,5 +15,16 @@ const mongoDB = async()=>{
     });
     
 };
+const project_data = require('./models/datadesc')
+const projectDB = async(e)=>{
+    let data = {}
+    await project_data.findOne({ _id: e }).then(async (docs) => {
+        data = docs
+    })
+    return data
+};
 
-module.exports = mongoDB;
+module.exports = {
+    mongoDB,
+    projectDB
+}

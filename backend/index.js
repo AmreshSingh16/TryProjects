@@ -1,8 +1,12 @@
-const mongodb = require('./db')
+const db = require('./db')
+const mongodb = db.mongoDB
 const express = require('express');
 const { json } = require('express');
+const projectDB = require('./db');
 const app = express();
 mongodb();
+
+
 
 app.get("/" , function(req,res){
     res.send("Hello World!")
@@ -20,6 +24,8 @@ app.use(express.json())
 app.use('/api' , require("./Routes/CreateUser"))
 app.use('/api' , require("./Routes/LoginUser"))
 app.use('/api' , require("./Routes/DisplayData"))
+app.use('/api' , require("./Routes/pdata"))
+
 
 app.listen(5000, function(){
     console.log("Listening on port 5000")
